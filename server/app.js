@@ -1,4 +1,5 @@
 const express = require("express");
+const { ParseToken } = require("./middleware/ParseToken");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const { config } = require("dotenv");
@@ -14,6 +15,7 @@ mongoose.connect(process.env.MONGODB_URI,{
 
 const app = express();
 app.use(bodyParser.json())
+app.use(ParseToken)
 app.set("view engine", "ejs")
 app.use(require("./routes"))
 
