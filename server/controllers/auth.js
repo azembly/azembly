@@ -1,7 +1,9 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 exports.init = async (req, res) => {
+    console.log("test")
     let user = null
     const userId = res.locals.userId
     if (userId) {
@@ -13,7 +15,7 @@ exports.init = async (req, res) => {
 }
 
 exports.login = async (req, res) => {
-    const { email, password } = req.body.user;
+    const { email, password } = req.body;
 
     const user = await User.findOne({ email: email.trim().toLowerCase() });
     if (!user) {
@@ -25,7 +27,8 @@ exports.login = async (req, res) => {
         return res.status(400).send({ error: "Invalid credentials" });
     }
 
-    const { token } = await UserService.login(req, res, user);
+    const token = jwt.sign({userId: user._id}, process.env.JWT_SECRET);
+    console.log(token);
     res.send({ token });
 }
 
