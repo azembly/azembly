@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 import HttpClient from './HttpClient';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import Homepage from './Pages/Homepage';
 
 export default function App() {
     const [user, setUser] = useState(null);
