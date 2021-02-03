@@ -27,6 +27,9 @@ export default function App() {
                         <Route path="/auth/register">
                             <Register />
                         </Route>
+                        <Route path="/" exact>
+                            <Homepage />
+                        </Route>
                     </Switch>
                 </AppContext.Provider>
             )}
